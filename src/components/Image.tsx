@@ -7,7 +7,7 @@ interface ImageProps {
 
 const Image = ({ isLoading, imageUrl }: ImageProps) => {
 	return (
-		<Box boxSize="sm" mt={20} ml={40}>
+		<Box boxSize="sm" mt={20} ml={60}>
 			{isLoading ? <Spinner /> : <ImageBox src={imageUrl} />}
 		</Box>
 	);

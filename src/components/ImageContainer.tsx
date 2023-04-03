@@ -8,6 +8,8 @@ const ImageContainer = () => {
 	const [imageUrl, setImageUrl] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
 
+	const isDisabled = input === "";
+
 	const handleSubmitPrompt = async () => {
 		setIsLoading(true);
 		const newImage = await createImage(input);
@@ -20,7 +22,11 @@ const ImageContainer = () => {
 
 	return (
 		<>
-			<ImagePrompt onSubmitPrompt={handleSubmitPrompt} setInput={setInput} />
+			<ImagePrompt
+				onSubmitPrompt={handleSubmitPrompt}
+				setInput={setInput}
+				isDisabled={isDisabled}
+			/>
 			<Image isLoading={isLoading} imageUrl={imageUrl} />
 		</>
 	);

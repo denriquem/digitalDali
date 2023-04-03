@@ -4,7 +4,7 @@ import ImageContainer from "./components/ImageContainer";
 function App() {
 	return (
 		<>
-			<Heading>Digital Daliiii</Heading>
+			<Heading textAlign="center">Digital Dali</Heading>
 			<ImageContainer />
 		</>
 	);

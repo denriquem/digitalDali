@@ -7,8 +7,8 @@ interface ImageProps {
 
 const Image = ({ isLoading, imageUrl }: ImageProps) => {
 	return (
-		<Box boxSize="sm" mt={20} ml={60}>
-			{isLoading ? <Spinner /> : <ImageBox src={imageUrl} />}
+		<Box boxSize="xs" h="full" p={1}>
+			{isLoading ? <Spinner /> : <ImageBox maxH="200px" src={imageUrl} />}
 		</Box>
 	);
 };

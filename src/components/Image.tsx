@@ -1,4 +1,4 @@
-import { Box, Image as ImageBox, Spinner } from "@chakra-ui/react";
+import { Image as ImageBox, Spinner } from "@chakra-ui/react";
 
 interface ImageProps {
 	isLoading: boolean;
@@ -6,11 +6,7 @@ interface ImageProps {
 }
 
 const Image = ({ isLoading, imageUrl }: ImageProps) => {
-	return (
-		<Box boxSize="xs" h="full" p={1}>
-			{isLoading ? <Spinner /> : <ImageBox maxH="200px" src={imageUrl} />}
-		</Box>
-	);
+	return isLoading ? <Spinner /> : <ImageBox maxH="200px" src={imageUrl} />;
 };
 
 export default Image;

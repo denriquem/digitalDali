@@ -5,6 +5,8 @@ export const createImage = async (prompt: string) => {
 		prompt,
 	});
 
+	console.log(response2);
+
 	const ans = response2.data.data[0].url;
 	console.log(ans);
 	return ans;

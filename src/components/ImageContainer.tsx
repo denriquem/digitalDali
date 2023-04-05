@@ -3,11 +3,17 @@ import { createImage } from "../api/createImage";
 import ImagePrompt from "./ImagePrompt";
 import Image from "./Image";
 import { Flex } from "@chakra-ui/layout";
+import ImageRow from "./ImageRow";
+
+import { useImageStore } from "../store";
 
 const ImageContainer = () => {
 	const [input, setInput] = useState("");
-	const [imageUrl, setImageUrl] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
+
+	const { setNewImage, images } = useImageStore((state) => state);
+
+	console.log(images);
 
 	const isDisabled = input === "";
 
@@ -15,7 +21,7 @@ const ImageContainer = () => {
 		setIsLoading(true);
 		const newImage = await createImage(input);
 		if (newImage) {
-			setImageUrl(newImage);
+			setNewImage(newImage);
 			console.log("done");
 			setIsLoading(false);
 		}
@@ -28,7 +34,8 @@ const ImageContainer = () => {
 				setInput={setInput}
 				isDisabled={isDisabled}
 			/>
-			<Image isLoading={isLoading} imageUrl={imageUrl} />
+			{/* <Image isLoading={isLoading} imageUrl={imageUrl} /> */}
+			<ImageRow images={images} />
 		</Flex>
 	);
 };

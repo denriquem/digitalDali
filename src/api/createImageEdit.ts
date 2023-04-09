@@ -1,10 +1,7 @@
 import { openai } from "./config";
 
-export const createImage = async (prompt: string) => {
-	const response = await openai.createImage({
-		prompt,
-	});
-
+export const createImage = async (file: any, prompt: string) => {
+	const response = await openai.createImageEdit(file, prompt);
 	console.log(response);
 
 	const ans = response.data.data[0].url;

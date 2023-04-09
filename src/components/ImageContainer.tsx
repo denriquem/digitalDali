@@ -34,7 +34,6 @@ const ImageContainer = () => {
 				setInput={setInput}
 				isDisabled={isDisabled}
 			/>
-			{/* <Image isLoading={isLoading} imageUrl={imageUrl} /> */}
 			<ImageRow images={images} />
 		</Flex>
 	);

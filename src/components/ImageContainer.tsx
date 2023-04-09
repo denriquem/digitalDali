@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { createImage } from "../api/createImage";
 import ImagePrompt from "./ImagePrompt";
-import Image from "./Image";
 import { Flex } from "@chakra-ui/layout";
 import ImageRow from "./ImageRow";
 
+import { useToast } from "@chakra-ui/react";
 import { useImageStore } from "../store";
 
 const ImageContainer = () => {
@@ -13,17 +13,34 @@ const ImageContainer = () => {
 
 	const { setNewImage, images } = useImageStore((state) => state);
 
-	console.log(images);
-
-	const isDisabled = input === "";
+	const toast = useToast();
+	let isDisabled = input === "";
 
 	const handleSubmitPrompt = async () => {
 		setIsLoading(true);
-		const newImage = await createImage(input);
-		if (newImage) {
-			setNewImage(newImage);
-			console.log("done");
+
+		if (images.length >= 4) {
+			toast({
+				title: "The gallery is full",
+				description:
+					"Unfortunately you can only have a maximum of 4 images in the gallery",
+				status: "error",
+				duration: 9000,
+				isClosable: true,
+			});
 			setIsLoading(false);
+			return;
+		}
+
+		try {
+			const newImage = await createImage(input);
+			if (newImage) {
+				setNewImage(newImage);
+				console.log("done");
+				setIsLoading(false);
+			}
+		} catch (err) {
+			console.log(err);
 		}
 	};
 
@@ -34,7 +51,7 @@ const ImageContainer = () => {
 				setInput={setInput}
 				isDisabled={isDisabled}
 			/>
-			<ImageRow images={images} />
+			<ImageRow images={images} isLoading={isLoading} />
 		</Flex>
 	);
 };

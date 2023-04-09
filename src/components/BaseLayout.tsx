@@ -5,8 +5,11 @@ import ImageContainer from "./ImageContainer";
 const BaseLayout = () => {
 	return (
 		<Grid
+			m={0}
 			bg="black"
-			h="800px"
+			bgColor="black"
+			h="100vh"
+			backgroundSize="cover"
 			templateRows="repeat(3, 1fr)"
 			templateColumns="repeat(1, 1fr)"
 			gap={4}

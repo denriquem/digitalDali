@@ -7,9 +7,6 @@ interface ImageRowProps {
 }
 
 const ImageRow = ({ images, isLoading }: ImageRowProps) => {
-	if (images) {
-		console.log(images.length);
-	}
 	const imageList = images?.map((image) => {
 		return <Image imageUrl={image} isLoading={isLoading} />;
 	});

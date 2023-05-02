@@ -13,8 +13,8 @@ const Header = () => {
 			>
 				Dancing Sushi
 			</Heading>
-			<Heading ml={12}>A descent into the abyss</Heading>
-			<Heading ml={16}>of our collective subconscious</Heading>
+			<Heading ml={12}>An enjoyable</Heading>
+			<Heading ml={16}>walk in the park</Heading>
 		</>
 	);
 };

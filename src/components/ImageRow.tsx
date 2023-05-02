@@ -2,13 +2,13 @@ import { Flex } from "@chakra-ui/layout";
 import Image from "./Image";
 
 interface ImageRowProps {
-	images?: string[];
+	images?: any;
 	isLoading: boolean;
 }
 
 const ImageRow = ({ images, isLoading }: ImageRowProps) => {
-	const imageList = images?.map((image) => {
-		return <Image imageUrl={image} isLoading={isLoading} />;
+	const imageList = images?.map((image: any) => {
+		return <Image imageUrl={image.imageUrl} isLoading={isLoading} />;
 	});
 
 	return (

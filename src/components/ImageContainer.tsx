@@ -4,21 +4,22 @@ import ImagePrompt from "./ImagePrompt";
 import { Flex } from "@chakra-ui/layout";
 import ImageRow from "./ImageRow";
 
-import { useToast } from "@chakra-ui/react";
+import { Button, useToast } from "@chakra-ui/react";
 import { useImageStore } from "../store";
 
 const ImageContainer = () => {
 	const [input, setInput] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
 
-	const { setNewImage, images } = useImageStore((state) => state);
+	const { setNewImage, images, setCarousel, carousel, resetImages } =
+		useImageStore((state) => state);
 
 	const toast = useToast();
 	let isDisabled = input === "";
 
-	const handleSubmitPrompt = async () => {
-		setIsLoading(true);
+	console.log(carousel);
 
+	const checkImageLength = () => {
 		if (images.length >= 4) {
 			toast({
 				title: "The gallery is full",
@@ -31,17 +32,26 @@ const ImageContainer = () => {
 			setIsLoading(false);
 			return;
 		}
+	};
+
+	const handleSubmitPrompt = async () => {
+		setIsLoading(true);
+		checkImageLength();
 
 		try {
 			const newImage = await createImage(input);
 			if (newImage) {
 				setNewImage(newImage);
-				console.log("done");
 				setIsLoading(false);
 			}
 		} catch (err) {
 			console.log(err);
 		}
+	};
+
+	const addCarousel = () => {
+		setCarousel(images);
+		resetImages();
 	};
 
 	return (
@@ -51,6 +61,7 @@ const ImageContainer = () => {
 				setInput={setInput}
 				isDisabled={isDisabled}
 			/>
+			<Button onClick={addCarousel}>Add Carousel</Button>
 			<ImageRow images={images} isLoading={isLoading} />
 		</Flex>
 	);

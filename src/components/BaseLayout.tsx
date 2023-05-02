@@ -9,6 +9,7 @@ const BaseLayout = () => {
 			bg="black"
 			bgColor="black"
 			h="100vh"
+			w="200vh"
 			backgroundSize="cover"
 			templateRows="repeat(3, 1fr)"
 			templateColumns="repeat(1, 1fr)"
